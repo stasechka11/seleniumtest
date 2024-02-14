@@ -68,4 +68,73 @@ public class CardRequestTest {
         assertTrue(actualTextElement.isDisplayed());
         assertEquals(expectedText, actualText);
     }
+
+    @Test
+    public void displayErrorIfNameEmpty() {
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+71234567891");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub"));
+        String actualText = actualTextElement.getText().trim();
+        String expectedText = "Поле обязательно для заполнения";
+
+        assertTrue(actualTextElement.isDisplayed());
+        assertEquals(expectedText, actualText);
+    }
+
+    @Test
+    public void displayErrorIfPhoneIncorrect() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Светлова Анжела");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+7111");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub"));
+        String actualText = actualTextElement.getText().trim();
+        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+
+        assertTrue(actualTextElement.isDisplayed());
+        assertEquals(expectedText, actualText);
+    }
+
+    @Test
+    public void displayErrorIfPhoneWithoutPlus() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Андрей Плотников");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("77263548901");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub"));
+        String actualText = actualTextElement.getText().trim();
+        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+
+        assertTrue(actualTextElement.isDisplayed());
+        assertEquals(expectedText, actualText);
+    }
+
+    @Test
+    public void displayErrorIfPhoneEmpty() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Виталина Власова");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub"));
+        String actualText = actualTextElement.getText().trim();
+        String expectedText = "Поле обязательно для заполнения";
+
+        assertTrue(actualTextElement.isDisplayed());
+        assertEquals(expectedText, actualText);
+    }
+
+    @Test
+    public void displayErrorUncheckedCheckbox() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("ПОЛИНА ВЕТКИНА");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79239232400");
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid"));
+
+        assertTrue(actualTextElement.isDisplayed());
+    }
 }
