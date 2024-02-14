@@ -40,7 +40,7 @@ public class CardRequestTest {
 
     @Test
     public void shouldSendRequestCardSuccess() {
-        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Петров Алексей");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Алёна Полякова");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79271232457");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
@@ -85,7 +85,7 @@ public class CardRequestTest {
 
     @Test
     public void displayErrorIfPhoneIncorrect() {
-        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Светлова Анжела");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Светлова Анна-Мария");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+7111");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
