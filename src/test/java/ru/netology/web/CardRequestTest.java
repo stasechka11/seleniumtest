@@ -53,4 +53,19 @@ public class CardRequestTest {
         assertEquals(expectedText, actualText);
 
     }
+
+    @Test
+    public void displayErrorIfIncorrectName() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Petrov Petr");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79271232457");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+
+        WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub"));
+        String actualText = actualTextElement.getText().trim();
+        String expectedText = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+
+        assertTrue(actualTextElement.isDisplayed());
+        assertEquals(expectedText, actualText);
+    }
 }
