@@ -63,7 +63,7 @@ public class CardRequestTest {
 
         WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub"));
         String actualText = actualTextElement.getText().trim();
-        String expectedText = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+        String expectedText = "Имя и Фамилия указаны неверно. Допустимы только русские буквы, пробелы и дефисы.";
 
         assertTrue(actualTextElement.isDisplayed());
         assertEquals(expectedText, actualText);
