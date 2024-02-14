@@ -92,7 +92,7 @@ public class CardRequestTest {
 
         WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub"));
         String actualText = actualTextElement.getText().trim();
-        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+        String expectedText = "Телефон указан неверно. Должно быть 11 цифр и символ + на первом месте, например, +79012345678.";
 
         assertTrue(actualTextElement.isDisplayed());
         assertEquals(expectedText, actualText);
@@ -107,7 +107,7 @@ public class CardRequestTest {
 
         WebElement actualTextElement = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub"));
         String actualText = actualTextElement.getText().trim();
-        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+        String expectedText = "Телефон указан неверно. Должно быть 11 цифр и символ + на первом месте, например, +79012345678.";
 
         assertTrue(actualTextElement.isDisplayed());
         assertEquals(expectedText, actualText);
